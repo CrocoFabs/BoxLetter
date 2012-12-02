@@ -11,9 +11,10 @@ public class BoxLetter extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new Event(this), this);
 		config = new Configuration(this);
 		config.charger();		
+		System.out.println("[BoxLetter] BoxLetter est actif!");
 	}
 	@Override
 	public void onDisable(){
-		
+		System.out.println("[BoxLetter] BoxLetter est inactif!");	
 	}
 }

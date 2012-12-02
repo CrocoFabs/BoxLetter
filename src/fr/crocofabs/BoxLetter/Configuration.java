@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class Configuration{	
