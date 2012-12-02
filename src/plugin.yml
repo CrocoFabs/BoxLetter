@@ -4,7 +4,7 @@ version: 0.0.1
 author: CrocoFabs
 commands:
     boxletter:
-        usage: /boxletter
+        usage: /boxletter [Player] /boxletter stop pour arreter.
 permissions:
     boxletter:
         description: Permission pour BoxLetter.

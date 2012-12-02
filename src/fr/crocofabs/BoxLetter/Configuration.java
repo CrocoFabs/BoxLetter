@@ -21,8 +21,8 @@ public class Configuration{
 			plugin.saveConfig();
 		}
 	}
-	public void ajouterCoffre(Location lieu, Player joueur){
-		mapConfig.put(lieu.toVector(), joueur.getName());
+	public void ajouterCoffre(Location lieu, String joueur){
+		mapConfig.put(lieu.toVector(), joueur);
 		config.createSection("coffres", mapConfig);
 		plugin.saveConfig();
 	}
