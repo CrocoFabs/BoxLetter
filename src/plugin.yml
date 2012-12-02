@@ -1,0 +1,11 @@
+name: BoxLetter
+main: fr.crocofabs.BoxLetter.BoxLetter
+version: 0.0.1
+author: CrocoFabs
+commands:
+    boxletter:
+        usage: /boxletter
+permissions:
+    boxletter:
+        description: Permission pour BoxLetter.
+        default: true
