@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -18,26 +19,29 @@ public class Event implements Listener {
 	}
 	@EventHandler
 	public void Commande(PlayerCommandPreprocessEvent event){
-		if(event.getMessage().equalsIgnoreCase("/boxletter")){
+		if(event.getMessage().split(" ")[0].equalsIgnoreCase("/boxletter")){
 			joueurMap.put(event.getPlayer().getName(), true);
 			String[] args = event.getMessage().split(" ");
 			if(args.length == 2){
 				pseudo = args[1];
+				event.setCancelled(true);
 			}else{
-				event.getPlayer().sendMessage("[Erreur] usage: /boxletter <player>");
-				System.out.println("erreur");
+				pseudo = event.getPlayer().getName();
+				event.setCancelled(true);
 			}
 		}
 	}
 	
 	@EventHandler
-	public void ouvrirCoffre(PlayerInteractEvent event){
-		System.out.println("click");
-		if(/*joueurMap.get(event.getPlayer().getName())  &&*/ event.getMaterial() == Material.CHEST ){
-			System.out.println("set lieu");
-			lieu = event.getClickedBlock().getLocation();
-			plugin.config.ajouterCoffre(event.getPlayer().getLocation(), event.getPlayer());
-			joueurMap.put(event.getPlayer().getName(), false);
-		}event.setCancelled(false);
+	public void ouvrirCoffre(BlockDamageEvent event){
+		if(joueurMap.containsKey(event.getPlayer().getName())){
+			if(joueurMap.get(event.getPlayer().getName())  && event.getBlock().getType() == Material.CHEST ){
+				System.out.println("set lieu");
+				lieu = event.getBlock().getLocation();
+				plugin.config.ajouterCoffre(event.getPlayer().getLocation(), event.getPlayer());
+				joueurMap.put(event.getPlayer().getName(), false);
+			}
+			event.setCancelled(true);
+		}
 	}
 }
