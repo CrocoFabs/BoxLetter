@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.inventory.InventoryEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class Event implements Listener {
@@ -61,5 +63,11 @@ public class Event implements Listener {
 		}
 	}
 	
+	@EventHandler
+	public void ouvrirCoffre(InventoryEvent event){
+		if(event.getInventory().getType() == InventoryType.CHEST){
+			System.out.println(event.getViewers());
+		}
+	}
 	
 }
